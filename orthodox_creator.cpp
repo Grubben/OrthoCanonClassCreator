@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   orthodox_creator.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akliek <akliek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:19:01 by akliek            #+#    #+#             */
-/*   Updated: 2021/12/10 16:53:28 by akliek           ###   ########.fr       */
+/*   Updated: 2023/03/21 09:37:11 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ void	createHeaderFile(std::string file, std::string name)
 	upper = name;
 	std::transform(upper.begin(), upper.end(),upper.begin(), ::toupper);
 
-	fout << "#ifndef " << upper << "_HPP" << std::endl;
-	fout << "# define " << upper << "_HPP\n" << std::endl;
-	fout << "# include <iostream>\n" << std::endl;
+	// fout << "#ifndef " << upper << "_HPP" << std::endl;
+	// fout << "# define " << upper << "_HPP\n" << std::endl;
+	fout << "#pragma once" << std::endl;
+	fout << "#include <iostream>\n" << std::endl;
 	fout << "class " << name << "\n{"<< std::endl;
 	fout << "\tprivate:\n\t\t/*private members*/\n\tpublic:" << std::endl;
 	fout << "\t\t" << name << "(void);" << std::endl;
-	fout << "\t\t~" << name << "(void);" << std::endl;
-	fout << "\t\t" << name << "(const " << name << " &copy);\n" << std::endl;
-	fout << "\t\t" << name << "\t&operator = (const " << name << " &copy);" << std::endl;
-	fout << "};\n" << std::endl;
-	fout << "#endif" << std::endl;
+	fout << "\t\t" << name << "(const " << name << " &copy);" << std::endl;
+	fout << "\t\t~" << name << "(void);" << std::endl << std::endl;
+	fout << "\t\t" << name << "\t&operator= (const " << name << " &copy);" << std::endl;
+	fout << "};" << std::endl;
 
 	fout.close();
 }

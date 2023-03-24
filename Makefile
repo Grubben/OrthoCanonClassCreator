@@ -3,29 +3,29 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akliek <akliek@student.42.fr>              +#+  +:+       +#+         #
+#    By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 15:14:17 by akliek            #+#    #+#              #
-#    Updated: 2021/12/10 13:21:31 by akliek           ###   ########.fr        #
+#    Updated: 2023/03/21 09:33:07 by amaria-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = orthodox
+NAME = bin/orthodox
 
-CC = clang++
+CXXFLAGS = -Wall -Werror -Wextra
 
-CFLAGS = -Wall -Werror -Wextra
+SRCS	= $(wildcard *.cpp)
+OBJS	= $(SRCS:.cpp=.o)
 
-SRC = *.cpp
 
-all: $(NAME)
+$(NAME)	: $(OBJS)
+		# mkdir bin
+		$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-$(NAME):
-		$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+c		:
+			$(RM) $(NAME)
 
-clean: clean
-		rm -rf $(NAME)
+f		: c
+			$(RM) $(OBJS)
 
-re:	
-		make clean
-		make all
+r		: f $(NAME)
