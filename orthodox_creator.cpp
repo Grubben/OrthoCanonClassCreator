@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   orthodox_creator.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amc <amc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:19:01 by akliek            #+#    #+#             */
-/*   Updated: 2023/03/21 09:37:11 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:50:31 by amc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	createSrcFile(std::string file, std::string name)
 	}
 
 	fout << "#include \"" << name << ".hpp\"\n" << std::endl;
-	fout << name << "::" << name << "(void)\n{" << std::endl;
-	fout << "\tstd::cout << \"Constructor called\" << std::endl;\n}\n" << std::endl;
 	fout << name << "::~" << name << "(void)\n{" << std::endl;
 	fout << "\tstd::cout << \"Destructor called\" << std::endl;\n}\n" << std::endl;
-	fout << name << "::" << name << "(const " << name << " &copy)\n{" << std::endl;
+	fout << name << "::" << name << "(void)\n{" << std::endl;
+	fout << "\tstd::cout << \"Constructor called\" << std::endl;\n}\n" << std::endl;
+	fout << name << "::" << name << "(const " << name << "& copy)\n{" << std::endl;
 	fout << "\tstd::cout << \"Copy constructor called\" << std::endl;\n\t*this = copy;\n}\n" << std::endl;
-	fout << name << "\t&" << name << "::" << "operator = (const " << name << " &copy)\n{" << std::endl;
+	fout << name << "&\t" << name << "::" << "operator= (const " << name << "& copy)\n{" << std::endl;
 	fout << "\tstd::cout << \"Assignation operator called\" << std::endl;\n\treturn (*this);\n}" << std::endl;
 
 	fout.close();
@@ -58,12 +58,13 @@ void	createHeaderFile(std::string file, std::string name)
 	fout << "#pragma once" << std::endl;
 	fout << "#include <iostream>\n" << std::endl;
 	fout << "class " << name << "\n{"<< std::endl;
-	fout << "\tprivate:\n\t\t/*private members*/\n\tpublic:" << std::endl;
-	fout << "\t\t" << name << "(void);" << std::endl;
-	fout << "\t\t" << name << "(const " << name << " &copy);" << std::endl;
-	fout << "\t\t~" << name << "(void);" << std::endl << std::endl;
-	fout << "\t\t" << name << "\t&operator= (const " << name << " &copy);" << std::endl;
-	fout << "};" << std::endl;
+	fout << "private:\n\t\t/*private members*/\npublic:" << std::endl;
+	fout << "\t~" << name << "(void);" << std::endl;
+	fout << "\t" << name << "(void);" << std::endl;
+	fout << "\t" << name << "(const " << name << "& copy);\n" << std::endl;
+	fout << "\t" << name << "&\toperator= (const " << name << "& copy);" << std::endl;
+	fout << "};\n" << std::endl;
+	fout << "#endif" << std::endl;
 
 	fout.close();
 }

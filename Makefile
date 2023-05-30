@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: amc <amc@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 15:14:17 by akliek            #+#    #+#              #
-#    Updated: 2023/03/21 09:33:07 by amaria-d         ###   ########.fr        #
+#    Updated: 2023/05/30 14:51:00 by amc              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,22 @@ CXXFLAGS = -Wall -Werror -Wextra
 SRCS	= $(wildcard *.cpp)
 OBJS	= $(SRCS:.cpp=.o)
 
+SRCS = $(wildcard *.cpp)
 
-$(NAME)	: $(OBJS)
-		# mkdir bin
-		$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+OBJS = $(SRCS:.cpp=.o)
 
-c		:
-			$(RM) $(NAME)
 
-f		: c
-			$(RM) $(OBJS)
+$(NAME): $(OBJS)
+		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-r		: f $(NAME)
+clean:
+		$(RM) $(OBJS)
+
+fclean: clean
+		$(RM) $(NAME)
+
+re:	
+		make clean
+		make all
+
+all: $(NAME)
