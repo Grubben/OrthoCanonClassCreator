@@ -6,7 +6,7 @@
 /*   By: amc <amc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:19:01 by akliek            #+#    #+#             */
-/*   Updated: 2023/05/30 14:52:07 by amc              ###   ########.fr       */
+/*   Updated: 2023/05/30 14:53:54 by amc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 	header_file += ".hpp";
 
 	createHeaderFile(header_file, argv[1]);
-	// createSrcFile(src_file, argv[1]);
+	createSrcFile(src_file, argv[1]);
 
 	return (0);
 }
