@@ -6,7 +6,7 @@
 /*   By: amc <amc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:19:01 by akliek            #+#    #+#             */
-/*   Updated: 2023/05/30 14:53:54 by amc              ###   ########.fr       */
+/*   Updated: 2023/06/10 21:20:22 by amc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@ void	createSrcFile(std::string file, std::string name)
 	}
 
 	fout << "#include \"" << name << ".hpp\"\n" << std::endl;
-	fout << name << "::~" << name << "(void)\n{" << std::endl;
-	fout << "\tstd::cout << \"Destructor called\" << std::endl;\n}\n" << std::endl;
+	
 	fout << name << "::" << name << "(void)\n{" << std::endl;
-	fout << "\tstd::cout << \"Constructor called\" << std::endl;\n}\n" << std::endl;
+	fout << "\tstd::cout << \"" << name << " constructor called\" << std::endl;\n}\n" << std::endl;
+	
 	fout << name << "::" << name << "(const " << name << "& copy)\n{" << std::endl;
-	fout << "\tstd::cout << \"Copy constructor called\" << std::endl;\n\t*this = copy;\n}\n" << std::endl;
+	fout << "\tstd::cout << \"" << name << " copy constructor called\" << std::endl;\n\t*this = copy;\n}\n" << std::endl;
+	
+	fout << name << "::~" << name << "(void)\n{" << std::endl;
+	fout << "\tstd::cout << \"" << name << " destructor called\" << std::endl;\n}\n" << std::endl;
+	
 	fout << name << "&\t" << name << "::" << "operator= (const " << name << "& copy)\n{" << std::endl;
-	fout << "\tstd::cout << \"Assignation operator called\" << std::endl;\n\treturn (*this);\n}" << std::endl;
+	fout << "\tstd::cout << \"" << name << " assignment operator called\" << std::endl;\n\tif (this != &copy)\n\t{}\n\treturn (*this);\n\n}" << std::endl;
 
 	fout.close();
 }
@@ -59,12 +63,13 @@ void	createHeaderFile(std::string file, std::string name)
 	fout << "#include <iostream>\n" << std::endl;
 	fout << "class " << name << "\n{"<< std::endl;
 	fout << "private:\n\t\t/*private members*/\npublic:" << std::endl;
-	fout << "\t~" << name << "(void);" << std::endl;
 	fout << "\t" << name << "(void);" << std::endl;
-	fout << "\t" << name << "(const " << name << "& copy);\n" << std::endl;
+	fout << "\t" << name << "(const " << name << "& copy);" << std::endl;
+	fout << "\t~" << name << "(void);" << std::endl;
+	fout << std::endl;
 	fout << "\t" << name << "&\toperator= (const " << name << "& copy);" << std::endl;
-	fout << "};\n" << std::endl;
-	fout << "#endif" << std::endl;
+	fout << "};" << std::endl;
+	// fout << "#endif" << std::endl;
 
 	fout.close();
 }
