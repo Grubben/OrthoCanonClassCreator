@@ -6,7 +6,7 @@
 /*   By: amc <amc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:19:01 by akliek            #+#    #+#             */
-/*   Updated: 2023/06/10 21:20:22 by amc              ###   ########.fr       */
+/*   Updated: 2023/06/19 15:58:51 by amc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	createSrcFile(std::string file, std::string name)
 	fout << "\tstd::cout << \"" << name << " destructor called\" << std::endl;\n}\n" << std::endl;
 	
 	fout << name << "&\t" << name << "::" << "operator= (const " << name << "& copy)\n{" << std::endl;
-	fout << "\tstd::cout << \"" << name << " assignment operator called\" << std::endl;\n\tif (this != &copy)\n\t{}\n\treturn (*this);\n\n}" << std::endl;
+	fout << "\tstd::cout << \"" << name << " assignment operator called\" << std::endl;\n\tif (this != &copy)\n\t{}\n\treturn (*this);\n}" << std::endl;
 
 	fout.close();
 }
